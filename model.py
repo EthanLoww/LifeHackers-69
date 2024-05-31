@@ -183,11 +183,11 @@ def generate_image():
 
     # Plot the historical data, test predictions, and future predictions
     plt.figure(figsize=(12, 6))
-    plt.plot(data.index, scaler.inverse_transform(scaled_data), label='Original Data')
-    plt.plot(future_df.index, future_df['Total'], label='Future Predictions', linestyle='--')
+    plt.plot(data.index, scaler.inverse_transform(scaled_data), label='Historical Data')
+    plt.plot(future_df.index, future_df['Total'], label='Predictions (5 Years)', linestyle='--')
     plt.xlabel('Date')
     plt.ylabel('Total Food Numbers')
-    plt.title('Bidirectional LSTM Predictions for Next 5 Years')
+    plt.title('Historical and Predicted Food Numbers (5 Years)')
     plt.legend()
     plt.grid(True)
     image_path = 'lifehackers69/public/images/graph.png'

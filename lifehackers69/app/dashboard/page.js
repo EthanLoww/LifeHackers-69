@@ -5,7 +5,6 @@ import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import Image from 'next/image';
 import axios from 'axios';
-import styles from '../globals.css';
 
 export default function Home() {
   const [chartData, setChartData] = useState(null);
@@ -39,8 +38,13 @@ export default function Home() {
               label: 'Total Food Numbers',
               data: values,
               borderColor: 'rgba(75, 192, 192, 1)',
-              borderWidth: 1,
+              borderWidth: 2,
               fill: false,
+              tension: 0.4,
+              pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+              pointBorderColor: '#fff',
+              pointHoverBackgroundColor: '#fff',
+              pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
             },
           ],
         });
@@ -75,41 +79,38 @@ export default function Home() {
   }, [imageSrc]);
 
   return (
-    <div className={styles.container}>
-      <header>
-        <h1>Food Numbers Dashboard</h1>
+    <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <header className="text-center mb-6">
+        <h1 className="text-4xl font-bold text-gray-800">Food Numbers Dashboard</h1>
       </header>
-      {error && <div className={styles.error}>Error: {error}</div>}
-      {/* {chartData && (
-        <div className={styles.chartContainer}>
-          <h2>Historical and Predicted Food Numbers (5 Years)</h2>
-          <Line data={chartData} />
-        </div>
-      )} */}
-      <div className={styles.imageContainer}>
-        <h2>Predictions Graph</h2>
-        <Image src={imageSrc} alt="Graph showing predictions" width={800} height={600} />
+      {error && <div className="text-red-600 font-bold text-center mb-4">Error: {error}</div>}
+     
+      <div className="my-6 text-center">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Predictions Graph</h2>
+        <Image src={imageSrc} alt="Graph showing predictions" width={800} height={600} className="mx-auto border-2 border-gray-300 rounded-lg shadow-md"/>
       </div>
-      <div className={styles.tableContainer}>
-        <h2>Data Table</h2>
-        <table>
-          <thead>
-            <tr>
-              {Object.keys(tableData[0] || {}).map((key) => (
-                <th key={key}>{key}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, index) => (
-              <tr key={index}>
-                {Object.values(row).map((value, i) => (
-                  <td key={i}>{value}</td>
+      <div className="my-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Data Table</h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                {Object.keys(tableData[0] || {}).map((key) => (
+                  <th key={key} className="py-3 px-6 text-left">{key}</th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="text-gray-600 text-sm font-light">
+              {tableData.map((row, index) => (
+                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                  {Object.values(row).map((value, i) => (
+                    <td key={i} className="py-3 px-6 border-b border-gray-200">{value}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

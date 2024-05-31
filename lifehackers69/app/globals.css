@@ -1,7 +1,7 @@
-/* styles/global.css */
+/* styles/global.css
 
 /* Reset some default styles */
-* {
+/* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -43,8 +43,8 @@ header h1 {
 
 .chart-container {
   width: 100%;
-  max-width: 1000px; /* Wider */
-  height: 400px; /* Shorter */
+  max-width: 1000px; 
+  height: 400px; 
   margin: 0 auto;
 }
 
@@ -96,4 +96,39 @@ footer {
   margin-top: 40px;
   font-size: 0.9em;
   color: #777;
+}  */
+
+
+ @tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*  
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}  */

@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.19.3",
     "chart.js": "^4.4.3",
     "next": "14.2.3",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
+    "styled-components": "^6.1.11",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
