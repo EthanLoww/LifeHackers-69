@@ -1,0 +1,76 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import {
+  Container,
+  Title,
+  Form,
+  Input,
+  Button,
+  InventoryList,
+  InventoryItem,
+  ItemName,
+  ItemDetails,
+} from "../components/StyledComponents";
+
+export default function Inventory() {
+  const [inventory, setInventory] = useState([]);
+  const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [expiryDate, setExpiryDate] = useState(new Date());
+
+  useEffect(() => {
+    fetchInventory();
+  }, []);
+
+  const fetchInventory = async () => {
+    const response = await axios.get("/api/inventory");
+    setInventory(response.data);
+  };
+
+  const addItem = async () => {
+    await axios.post("/api/inventory", { name, quantity, expiryDate });
+    fetchInventory();
+    setName("");
+    setQuantity(0);
+    setExpiryDate(new Date());
+  };
+
+  return (
+    <Container>
+      <Title>Inventory Management</Title>
+      <Form>
+        <Input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          type="number"
+          placeholder="Quantity"
+          value={quantity}
+          onChange={(e) => setQuantity(parseInt(e.target.value))}
+        />
+        <DatePicker
+          selected={expiryDate}
+          onChange={(date) => setExpiryDate(date)}
+          customInput={<Input />} // Custom input for dark theme
+        />
+        <Button onClick={addItem}>Add Item</Button>
+      </Form>
+      <InventoryList>
+        {inventory.map((item) => (
+          <InventoryItem key={item.id}>
+            <ItemName>{item.name}</ItemName>
+            <ItemDetails>
+              {item.quantity} pcs - Expires on{" "}
+              {new Date(item.expiryDate).toLocaleDateString()}
+            </ItemDetails>
+          </InventoryItem>
+        ))}
+      </InventoryList>
+    </Container>
+  );
+}
