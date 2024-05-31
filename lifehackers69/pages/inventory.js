@@ -12,6 +12,7 @@ import {
   InventoryItem,
   ItemName,
   ItemDetails,
+  Warning,
 } from "../components/StyledComponents";
 
 export default function Inventory() {
@@ -19,6 +20,7 @@ export default function Inventory() {
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [expiryDate, setExpiryDate] = useState(new Date());
+  const [threshold, setThreshold] = useState(0);
 
   useEffect(() => {
     fetchInventory();
@@ -30,11 +32,17 @@ export default function Inventory() {
   };
 
   const addItem = async () => {
-    await axios.post("/api/inventory", { name, quantity, expiryDate });
+    await axios.post("/api/inventory", {
+      name,
+      quantity,
+      expiryDate,
+      threshold,
+    });
     fetchInventory();
     setName("");
     setQuantity(0);
     setExpiryDate(new Date());
+    setThreshold(0);
   };
 
   return (
@@ -53,6 +61,12 @@ export default function Inventory() {
           value={quantity}
           onChange={(e) => setQuantity(parseInt(e.target.value))}
         />
+        <Input
+          type="number"
+          placeholder="Threshold Quantity"
+          value={threshold}
+          onChange={(e) => setThreshold(parseInt(e.target.value))}
+        />
         <DatePicker
           selected={expiryDate}
           onChange={(date) => setExpiryDate(date)}
@@ -62,11 +76,17 @@ export default function Inventory() {
       </Form>
       <InventoryList>
         {inventory.map((item) => (
-          <InventoryItem key={item.id}>
+          <InventoryItem
+            key={item.id}
+            isBelowThreshold={item.quantity < item.threshold}
+          >
             <ItemName>{item.name}</ItemName>
             <ItemDetails>
               {item.quantity} pcs - Expires on{" "}
               {new Date(item.expiryDate).toLocaleDateString()}
+              {item.quantity < item.threshold && (
+                <Warning> - Low Stock!</Warning>
+              )}
             </ItemDetails>
           </InventoryItem>
         ))}

@@ -68,11 +68,13 @@ export const InventoryList = styled.ul`
 export const InventoryItem = styled.li`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 15px;
   margin: 5px 0;
   border: 1px solid #444;
   border-radius: 4px;
-  background-color: #2c2c2c;
+  background-color: ${({ isBelowThreshold }) =>
+    isBelowThreshold ? "#5a1a1a" : "#2c2c2c"};
 `;
 
 export const ItemName = styled.span`
@@ -82,4 +84,9 @@ export const ItemName = styled.span`
 
 export const ItemDetails = styled.span`
   color: #bbb;
+`;
+
+export const Warning = styled.span`
+  color: #ff4d4d;
+  font-weight: bold;
 `;
