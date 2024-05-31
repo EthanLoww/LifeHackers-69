@@ -1,65 +1,99 @@
-body {
-  font-family: Arial, sans-serif;
+/* styles/global.css */
+
+/* Reset some default styles */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+  line-height: 1.6;
   padding: 20px;
 }
 
-h1 {
-  text-align: center;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input {
-  display: block;
-  margin: 20px auto;
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .chart-container,
 .image-container,
 .table-container {
-  width: 80%;
-  margin: 20px auto;
+  margin: 20px 0;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 1000px; /* Wider */
+  height: 400px; /* Shorter */
+  margin: 0 auto;
+}
+
+.image-container {
+  text-align: center;
 }
 
 .image-container img {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   height: auto;
+  border: 2px solid #ddd;
+  border-radius: 10px;
 }
 
-table {
+.table-container table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
-table, th, td {
+.table-container table, th, td {
   border: 1px solid #ddd;
 }
 
-th, td {
-  padding: 8px;
+.table-container th, .table-container td {
+  padding: 12px;
   text-align: left;
 }
 
-th {
+.table-container th {
   background-color: #f2f2f2;
-}
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+  color: #333;
 }
 
-h1 {
+.table-container tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
   text-align: center;
+  margin: 20px 0;
 }
 
-input {
-  display: block;
-  margin: 20px auto;
-}
-
-.chart-container {
-  width: 80%;
-  margin: 20px auto;
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #777;
 }
