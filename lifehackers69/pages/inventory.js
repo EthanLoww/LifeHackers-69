@@ -51,7 +51,7 @@ export default function Inventory() {
       <Form>
         <Input
           type="text"
-          placeholder="Name"
+          placeholder="Name of Food"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -63,7 +63,7 @@ export default function Inventory() {
         />
         <Input
           type="number"
-          placeholder="Threshold Quantity"
+          placeholder="Minimum Quantity"
           value={threshold}
           onChange={(e) => setThreshold(parseInt(e.target.value))}
         />
@@ -72,7 +72,7 @@ export default function Inventory() {
           onChange={(date) => setExpiryDate(date)}
           customInput={<Input />} // Custom input for dark theme
         />
-        <Button onClick={addItem}>Add Item</Button>
+        <Button onClick={addItem}>Add</Button>
       </Form>
       <InventoryList>
         {inventory.map((item) => (
