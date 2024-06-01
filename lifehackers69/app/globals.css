@@ -1,7 +1,108 @@
-@tailwind base;
+/* styles/global.css
+
+/* Reset some default styles */
+/* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.chart-container,
+.image-container,
+.table-container {
+  margin: 20px 0;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 1000px; 
+  height: 400px; 
+  margin: 0 auto;
+}
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table-container table, th, td {
+  border: 1px solid #ddd;
+}
+
+.table-container th, .table-container td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table-container th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.table-container tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9em;
+  color: #777;
+}  */
+
+
+ @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/*  
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -30,4 +131,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+}  */
