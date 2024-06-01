@@ -1,36 +1,36 @@
-##Problem Statement
+**Problem Statement**
 
 2. As the majority of Singapore’s food supply is imported, optimising the supply chain is critical. Implement algorithms that can predict demand, manage inventory and optimise logistics to reduce food waste and streamline supply chain processes.
 
-##Project Name
+**Project Name**
 
 Gegagedigedagedago
 
-##Aim 
+**Aim**
 
 We hope to:
 
-Reduce Food Waste: By accurately predicting demand and managing inventory effectively, the aim is to minimise instances of overstocking perishable goods, consequently reducing food waste.
+**Reduce Food Waste:** By accurately predicting demand and managing inventory effectively, the aim is to minimise instances of overstocking perishable goods, consequently reducing food waste.
 
-Ensure Food Security: Given Singapore's reliance on imports for the majority of its food supply, optimising the supply chain aims to ensure a steady and reliable flow of food into the country, enhancing overall food security.
+**Ensure Food Security:** Given Singapore's reliance on imports for the majority of its food supply, optimising the supply chain aims to ensure a steady and reliable flow of food into the country, enhancing overall food security.
 
-Optimise Costs: Efficient supply chain management can lead to cost savings through reduced wastage, optimised logistics, and improved inventory management, contributing to overall economic efficiency.
+**Optimise Costs:** Efficient supply chain management can lead to cost savings through reduced wastage, optimised logistics, and improved inventory management, contributing to overall economic efficiency.
 
-Enhance Sustainability: By minimising food waste and optimising logistics, the initiative contributes to broader sustainability goals, reducing the environmental impact associated with food production and transportation.
+**Enhance Sustainability:** By minimising food waste and optimising logistics, the initiative contributes to broader sustainability goals, reducing the environmental impact associated with food production and transportation.
 
-##Motivation
+**Motivation**
 
-National Resilience: Enhancing the efficiency and resilience of Singapore's food supply chain is crucial for the nation's stability and sovereignty, especially in times of global disruptions.
+**National Resilience:** Enhancing the efficiency and resilience of Singapore's food supply chain is crucial for the nation's stability and sovereignty, especially in times of global disruptions.
 
-Economic Viability: Optimizing the supply chain can have significant economic benefits by reducing costs associated with food wastage, transportation, and storage.
+**Economic Viability:** Optimizing the supply chain can have significant economic benefits by reducing costs associated with food wastage, transportation, and storage.
 
-Environmental Concerns: Addressing food waste contributes to environmental sustainability by reducing greenhouse gas emissions associated with food production, transportation, and disposal.
+**Environmental Concerns:** Addressing food waste contributes to environmental sustainability by reducing greenhouse gas emissions associated with food production, transportation, and disposal.
 
-Social Responsibility: Ensuring a reliable and sustainable food supply is a fundamental aspect of social responsibility, ensuring that all segments of society have access to nutritious food.
+**Social Responsibility:** Ensuring a reliable and sustainable food supply is a fundamental aspect of social responsibility, ensuring that all segments of society have access to nutritious food.
 
-Technological Innovation: Implementing advanced algorithms and technologies not only addresses immediate challenges but also positions Singapore as a leader in leveraging innovation for societal benefit.
+**Technological Innovation:** Implementing advanced algorithms and technologies not only addresses immediate challenges but also positions Singapore as a leader in leveraging innovation for societal benefit.
 
-##Features
+**Features**
 
 **LSTM Model to Predict Demand**
 
@@ -60,7 +60,7 @@ To facilitate the use of these predictions, a dashboard is developed. This dashb
 
 ![image](https://github.com/EthanLoww/LifeHackers-69/assets/156650597/ca2833b0-0484-4e12-a5c7-9452cd1037fc)
 
-##Inventory Management System
+**Inventory Management System**
 **Description**
 The inventory system provides a comprehensive solution for managing inventory, tracking quantities, and monitoring expiry dates, facilitating efficient inventory management and reducing the risk of product spoilage or obsolescence.
 
@@ -75,7 +75,7 @@ The inventory system provides a comprehensive solution for managing inventory, t
 **Design**
 ![image](https://github.com/EthanLoww/LifeHackers-69/assets/156650597/7549aa3a-4246-49ce-a652-613aef404af6)
 
-##Route Optimisation Algorithm
+**Route Optimisation Algorithm**
 **Description**
 The route optimisation system utilises the Google Maps API to efficiently plan delivery or transportation routes by calculating the most optimal path between a starting point, an ending point, and a list of intermediate stops. Here's how it works:
 
@@ -105,7 +105,7 @@ Start: Singapore Zoo, End: Woodlands Checkpoint.
 Stops: Marina Bay, Jewel, Pasir Ris Park, Istana, NUS
 ![image](https://github.com/EthanLoww/LifeHackers-69/assets/156650597/8d7cc79d-aefb-4f5a-a913-21c74f2bee15)
 
-##How does our hack answer the problem statement?
+**How does our hack answer the problem statement?**
 
 **LSTM Model for Demand Prediction:**
 
@@ -133,5 +133,5 @@ Stops: Marina Bay, Jewel, Pasir Ris Park, Istana, NUS
 
 In summary, each solution contributes to optimising the supply chain by addressing different aspects of the problem statement, including demand forecasting, inventory management, and logistics optimisation. Together, they help to reduce food waste, improve supply chain efficiency, and ensure the availability of fresh food items in Singapore's import-dependent food supply system.
 
-##How did you build your hack?
+**How did you build your hack?**
 We used JavaScript and React to build the Route Optimisation System and Inventory Management System, and we used Python, JavaScript and React to build the LSTM model to predict future demand. As for the Bidirectional LSTM model and dashboard, we first used TensorFlow to build the model, we got the data from data.gov.sg. We then set up a flask server that relies on the model to re-evaluate and generate the predictions every 1 day, this is so as to update the dashboard and make the analysis as real-time as possible. As for the frontend, we used Nextjs to create the webpage.
