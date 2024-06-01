@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import DatePicker from "react-datepicker";
+'use client';
 import "react-datepicker/dist/react-datepicker.css";
 import {
   Container,
@@ -13,7 +11,11 @@ import {
   ItemName,
   ItemDetails,
   Warning,
-} from "../components/StyledComponents";
+  ErrorMessage,
+  Loading,
+} from "../../components/StyledComponents";
+import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
 
 export default function Inventory() {
   const [inventory, setInventory] = useState([]);
@@ -21,33 +23,70 @@ export default function Inventory() {
   const [quantity, setQuantity] = useState(0);
   const [expiryDate, setExpiryDate] = useState(new Date());
   const [threshold, setThreshold] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     fetchInventory();
   }, []);
 
   const fetchInventory = async () => {
-    const response = await axios.get("/api/inventory");
-    setInventory(response.data);
+    setLoading(true);
+    try {
+      const response = await fetch("/api/inventory");
+      if (!response.ok) {
+        throw new Error("Failed to fetch inventory");
+      }
+      const data = await response.json();
+      setInventory(data);
+    } catch (error) {
+      setError("Failed to fetch inventory.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const addItem = async () => {
-    await axios.post("/api/inventory", {
-      name,
-      quantity,
-      expiryDate,
-      threshold,
-    });
-    fetchInventory();
-    setName("");
-    setQuantity(0);
-    setExpiryDate(new Date());
-    setThreshold(0);
+  const handleAddItem = async () => {
+    if (!name || quantity <= 0 || threshold < 0) {
+      setError("Please provide valid inputs.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await fetch("/api/inventory", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          quantity,
+          expiryDate: expiryDate.toISOString(),
+          threshold,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add item");
+      }
+      fetchInventory();
+      setName("");
+      setQuantity(0);
+      setExpiryDate(new Date());
+      setThreshold(0);
+      setError("");
+    } catch (error) {
+      setError("Failed to add item.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Container>
       <Title>Inventory Management</Title>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <Form>
         <Input
           type="text"
@@ -70,27 +109,31 @@ export default function Inventory() {
         <DatePicker
           selected={expiryDate}
           onChange={(date) => setExpiryDate(date)}
-          customInput={<Input />} // Custom input for dark theme
+          customInput={<Input />}
         />
-        <Button onClick={addItem}>Add</Button>
+        <Button type="button" onClick={handleAddItem}>Add</Button>
       </Form>
-      <InventoryList>
-        {inventory.map((item) => (
-          <InventoryItem
-            key={item.id}
-            isBelowThreshold={item.quantity < item.threshold}
-          >
-            <ItemName>{item.name}</ItemName>
-            <ItemDetails>
-              {item.quantity} pcs - Expires on{" "}
-              {new Date(item.expiryDate).toLocaleDateString()}
-              {item.quantity < item.threshold && (
-                <Warning> - Low Stock!</Warning>
-              )}
-            </ItemDetails>
-          </InventoryItem>
-        ))}
-      </InventoryList>
+      {loading ? (
+        <Loading>Loading...</Loading>
+      ) : (
+        <InventoryList>
+          {inventory.map((item) => (
+            <InventoryItem
+              key={item.id}
+              isBelowThreshold={item.quantity < item.threshold}
+            >
+              <ItemName>{item.name}</ItemName>
+              <ItemDetails>
+                {item.quantity} pcs - Expires on{" "}
+                {new Date(item.expiryDate).toLocaleDateString()}
+                {item.quantity < item.threshold && (
+                  <Warning> - Low Stock!</Warning>
+                )}
+              </ItemDetails>
+            </InventoryItem>
+          ))}
+        </InventoryList>
+      )}
     </Container>
   );
 }

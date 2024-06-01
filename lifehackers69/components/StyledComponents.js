@@ -84,3 +84,8 @@ export const ItemDetails = styled.span`
   color: #bbb;
 `;
 
+
+export const Warning = styled.div`
+  color: red;
+  font-weight: bold;
+`;

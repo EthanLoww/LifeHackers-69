@@ -15,13 +15,13 @@ import {
   Form,
   Input,
   Button,
-} from "../components/StyledComponents";
+} from "../../components/StyledComponents";
 
 const center = { lat: 1.287953, lng: 103.851784 };
 
 function App() {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "your_api_key",
+    googleMapsApiKey: "AIzaSyAb-PIjXiApxjazFk76asxHbVQRuXQ6RRc",
     libraries: ["places"],
   });
 
