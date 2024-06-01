@@ -18,9 +18,9 @@ import {
 export default function Inventory() {
   const [inventory, setInventory] = useState([]);
   const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState("");
   const [expiryDate, setExpiryDate] = useState(new Date());
-  const [threshold, setThreshold] = useState(0);
+  const [threshold, setThreshold] = useState("");
 
   useEffect(() => {
     fetchInventory();
